@@ -1,0 +1,27 @@
+diff --git a/minicargo.mk b/minicargo.mk
+index 6c3f55ba..64777da2 100644
+--- a/minicargo.mk
++++ b/minicargo.mk
+@@ -28,11 +28,11 @@ all: $(OUTDIR)rustc
+ LIBS: $(OUTDIR)libstd.hir $(OUTDIR)libtest.hir $(OUTDIR)libpanic_unwind.hir $(OUTDIR)libproc_macro.hir
+ 
+ $(MRUSTC):
+-	$(MAKE) -f Makefile all
++	$(MAKE) $(EXTRA_MAKE_OPTS) -f Makefile all
+ 	test -e $@
+ 
+ $(MINICARGO):
+-	$(MAKE) -C tools/minicargo/
++	$(MAKE) $(EXTRA_MAKE_OPTS) -C tools/minicargo/
+ 	test -e $@
+ 
+ # Standard library crates
+@@ -85,7 +85,7 @@ $(LLVM_CONFIG): $(RUSTCSRC)build/Makefile
+ 	$Vcd $(RUSTCSRC)build && $(MAKE)
+ $(RUSTCSRC)build/Makefile: $(RUSTCSRC)src/llvm/CMakeLists.txt
+ 	@mkdir -p $(RUSTCSRC)build
+-	$Vcd $(RUSTCSRC)build && cmake $(addprefix -D , $(LLVM_CMAKE_OPTS)) ../src/llvm
++	$Vcd $(RUSTCSRC)build && cmake $(EXTRA_MAKE_OPTS) $(addprefix -D , $(LLVM_CMAKE_OPTS)) ../src/llvm
+ 
+ 
+ #

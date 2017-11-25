@@ -1,0 +1,36 @@
+diff --git a/src/librustc/lib.rs b/src/librustc/lib.rs
+index 2216103636..4fce2a4311 100644
+--- a/src/librustc/lib.rs
++++ b/src/librustc/lib.rs
+@@ -21,6 +21,7 @@
+        html_favicon_url = "https://doc.rust-lang.org/favicon.ico",
+        html_root_url = "https://doc.rust-lang.org/nightly/")]
+ #![deny(warnings)]
++#![allow(stable_features)]
+ 
+ #![feature(associated_consts)]
+ #![feature(box_patterns)]
+diff --git a/src/librustc_driver/lib.rs b/src/librustc_driver/lib.rs
+index c5f89e861f..1234099382 100644
+--- a/src/librustc_driver/lib.rs
++++ b/src/librustc_driver/lib.rs
+@@ -21,6 +21,7 @@
+       html_favicon_url = "https://doc.rust-lang.org/favicon.ico",
+       html_root_url = "https://doc.rust-lang.org/nightly/")]
+ #![deny(warnings)]
++#![allow(stable_features)]
+ 
+ #![feature(box_syntax)]
+ #![feature(libc)]
+diff --git a/src/librustc_typeck/lib.rs b/src/librustc_typeck/lib.rs
+index 06cb9f948c..98834e1cc8 100644
+--- a/src/librustc_typeck/lib.rs
++++ b/src/librustc_typeck/lib.rs
+@@ -70,6 +70,7 @@ This API is completely unstable and subject to change.
+       html_favicon_url = "https://doc.rust-lang.org/favicon.ico",
+       html_root_url = "https://doc.rust-lang.org/nightly/")]
+ #![deny(warnings)]
++#![allow(stable_features)]
+ 
+ #![allow(non_camel_case_types)]
+ 

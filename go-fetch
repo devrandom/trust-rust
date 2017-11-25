@@ -1,0 +1,31 @@
+#!/bin/sh
+
+set -e
+
+export LLVM_CMAKE_OPTS=-j8
+
+mkdir -p inputs
+
+echo "********** Clone rust"
+[ -e inputs/rust ] || git clone https://github.com/rust-lang/rust.git 
+(cd inputs/rust && git checkout 0ade339411587887bf01bcfa2e9ae4414c8900d4 && git reset --hard && git clean -xdf)
+
+echo "********** Clone mrustc"
+[ -e inputs/mrustc ] || git clone https://github.com/thepowersgang/mrustc.git
+(cd inputs/mrustc && git checkout 854ffd1878578cdd4431c6335d41ee16a4a505c7 && git reset --hard && git clean -xdf)
+
+echo "********** Creating clean work directories from inputs"
+rm -rf mrustc rust
+cp -a inputs/mrustc mrustc
+cp -a inputs/rust rust
+
+echo "********** FIXME getting vendored crates from rustc tarball" 
+# Should be vendored by us instead
+sha256sum -c sums
+(cd mrustc && tar xzf ../inputs/rustc-1.19.0-src.tar.gz rustc-1.19.0-src/src/vendor)
+
+echo "********** Patching mrustc"
+(cd mrustc && patch -p1 < ../mrustc.patch)
+
+echo "********** Patching rust"
+(cd rust && patch -p1 < ../rustc.patch)

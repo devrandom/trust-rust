@@ -1,0 +1,5 @@
+inputs
+mrustc
+rust
+stage0
+*.log

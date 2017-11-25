@@ -1,0 +1,29 @@
+#!/bin/bash
+
+set -e
+
+export EXTRA_MAKE_OPTS=-j8
+
+echo "********** Build mrustc and rustc stage 0"
+
+(cd rust && git submodule init && git submodule update --init)
+(cd mrustc && ln -sf ../rust rustc-1.19.0-src)
+#(cd mrustc && MAKEFLAGS=-j8 make -f minicargo.mk bin/mrustc) > mrustc.log
+#(cd mrustc && make -j8 -f minicargo.mk all) > rustc-mrustc.log
+
+echo "********** Build stage 0 std lib"
+(cd mrustc/run_rustc && make) > rustc-mrustc-std.log
+
+rm -rf stage0
+mkdir -p stage0/bin
+mkdir -p stage0/lib64/rustlib/x86_64-unknown-linux-gnu/lib/lib
+cp mrustc/output/rustc stage0/bin
+cp -a mrustc/run_rustc/prefix/lib/* stage0/lib64/rustlib/x86_64-unknown-linux-gnu/lib
+
+echo "********** Build rustc"
+cat <<EOF > rust/config.toml
+[build]
+rustc = "$PWD/stage0/bin/rustc"
+EOF
+
+(cd rust && ./x.py --verbose build) |& tee rustc.log
