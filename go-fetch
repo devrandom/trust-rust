@@ -21,6 +21,7 @@ cp -a inputs/rust rust
 
 echo "********** FIXME getting vendored crates from rustc tarball" 
 # Should be vendored by us instead
+[ -e inputs/rustc-1.19.0-src.tar.gz ] || (cd inputs && curl https://static.rust-lang.org/dist/rustc-1.19.0-src.tar.gz > .temp && mv .temp rustc-1.19.0-src.tar.gz)
 sha256sum -c sums
 (cd mrustc && tar xzf ../inputs/rustc-1.19.0-src.tar.gz rustc-1.19.0-src/src/vendor)
 
