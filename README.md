@@ -10,3 +10,4 @@ TODO
 
 - Better vendoring of sources
 - Ensure no unexpected network access by build scripts
+- Evaluate artifacts other than `rustc`

@@ -2,4 +2,6 @@ inputs
 mrustc
 rust
 stage0
+orig
 *.log
+report.md
