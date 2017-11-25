@@ -7,11 +7,11 @@ export LLVM_CMAKE_OPTS=-j8
 mkdir -p inputs
 
 echo "********** Clone rust"
-[ -e inputs/rust ] || git clone https://github.com/rust-lang/rust.git 
+[ -e inputs/rust ] || (cd inputs && git clone https://github.com/rust-lang/rust.git)
 (cd inputs/rust && git checkout 0ade339411587887bf01bcfa2e9ae4414c8900d4 && git reset --hard && git clean -xdf)
 
 echo "********** Clone mrustc"
-[ -e inputs/mrustc ] || git clone https://github.com/thepowersgang/mrustc.git
+[ -e inputs/mrustc ] || (cd inputs && git clone https://github.com/thepowersgang/mrustc.git)
 (cd inputs/mrustc && git checkout 854ffd1878578cdd4431c6335d41ee16a4a505c7 && git reset --hard && git clean -xdf)
 
 echo "********** Creating clean work directories from inputs"
