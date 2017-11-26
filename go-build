@@ -6,7 +6,6 @@ export EXTRA_MAKE_OPTS=-j8
 
 echo "********** Build mrustc and rustc stage 0"
 
-(cd rust && git submodule init && git submodule update --init)
 (cd mrustc && ln -sf ../rust rustc-1.19.0-src)
 (cd mrustc && MAKEFLAGS=-j8 make -f minicargo.mk bin/mrustc) > mrustc.log
 (cd mrustc && make -j8 -f minicargo.mk all) > rustc-mrustc.log

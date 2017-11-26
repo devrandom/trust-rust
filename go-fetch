@@ -26,6 +26,9 @@ sha256sum -c sums
 (cd inputs && tar xzf rustc-1.19.0-src.tar.gz rustc-1.19.0-src/src/vendor)
 cp -a inputs/rustc-1.19.0-src/src/vendor rust/src/vendor
 
+echo "********** Fetch rust git submodules"
+(cd rust && git submodule init && git submodule update --init)
+
 echo "********** Patching mrustc"
 (cd mrustc && patch -p1 < ../mrustc.patch)
 
