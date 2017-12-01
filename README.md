@@ -1,3 +1,10 @@
+Pre-requisites
+=======
+
+```
+apt-get install build-essential libssl-dev libcurl4-openssl-dev pkg-config libssh2-1-dev
+```
+
 Rust compiler from trusted build roots
 ======
 
@@ -28,3 +35,4 @@ TODO
 - Better vendoring of sources
 - Ensure no unexpected network access by build scripts
 - Evaluate artifacts other than `rustc`
+
