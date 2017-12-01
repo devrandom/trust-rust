@@ -1,10 +1,3 @@
-Pre-requisites
-=======
-
-```
-apt-get install build-essential libssl-dev libcurl4-openssl-dev pkg-config libssh2-1-dev
-```
-
 Rust compiler from trusted build roots
 ======
 
@@ -19,7 +12,7 @@ The following was tested on Debian 9.  Total build time is 2-3 hours because of 
 of parallelism in the rustc bootstrap phase.
 
 ```
-sudo apt install build-essential cmake curl git diffoscope
+sudo apt install build-essential cmake curl git diffoscope libssl-dev libcurl4-openssl-dev pkg-config libssh2-1-dev
 ./go-fetch
 
 # from this point on, there should be no network access
