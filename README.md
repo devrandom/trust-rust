@@ -22,9 +22,24 @@ sudo apt install build-essential cmake curl git diffoscope libssl-dev libcurl4-o
 
 diffoscope result will be in `report.md` and various logs in `*.log`.
 
+USE
+======
+
+After building, do the following:
+
+```
+mkdir trusted
+cp -a trust-rust/stage0/bin trusted
+cp -a trust-rust/rust/build/x86_64-unknown-linux-gnu/stage2/* trusted
+PATH=`pwd`/trusted/bin:$PATH
+```
+
+`rustc -V` should produce `rustc 1.19.0-dev (0ade33941 2017-07-17)`.
+
 TODO
 ======
 
+- cargo TLS
 - Evaluate artifacts other than `rustc` with diffoscope
 - Check how far we are from a deterministic build
 
