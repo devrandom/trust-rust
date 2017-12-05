@@ -25,7 +25,6 @@ diffoscope result will be in `report.md` and various logs in `*.log`.
 TODO
 ======
 
-- Better vendoring of sources
-- Ensure no unexpected network access by build scripts
-- Evaluate artifacts other than `rustc`
+- Evaluate artifacts other than `rustc` with diffoscope
+- Check how far we are from a deterministic build
 
