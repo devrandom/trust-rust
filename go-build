@@ -8,7 +8,8 @@ echo "********** Build mrustc and rustc stage 0"
 
 (cd mrustc && ln -sf ../rust rustc-1.19.0-src)
 (cd mrustc && MAKEFLAGS=-j8 make -f minicargo.mk bin/mrustc) > mrustc.log
-(cd mrustc && make -j8 -f minicargo.mk output/rustc output/cargo) > rustc-mrustc.log
+(cd mrustc && make -j8 -f minicargo.mk output/rustc) > rustc-mrustc.log
+(cd mrustc && make -f minicargo.mk output/cargo) > cargo-mrustc.log
 
 echo "********** Build stage 0 std lib"
 (cd mrustc/run_rustc && make) > rustc-mrustc-std.log
