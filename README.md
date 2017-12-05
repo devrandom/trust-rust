@@ -29,7 +29,6 @@ After building, do the following:
 
 ```
 mkdir trusted
-cp -a trust-rust/stage0/bin trusted
 cp -a trust-rust/rust/build/x86_64-unknown-linux-gnu/stage2/* trusted
 PATH=`pwd`/trusted/bin:$PATH
 ```
